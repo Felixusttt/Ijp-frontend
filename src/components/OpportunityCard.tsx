@@ -31,14 +31,28 @@ export function OpportunityCard({ opportunity }: OpportunityCardProps) {
 
   return (
     <div
-      className={`rounded-lg p-5 cursor-pointer transition-all duration-300 ease-out bg-card shadow-card min-h-[200px] ${
-        isHovered ? 'border-l-4 border-l-primary' : 'border-l-4 border-l-transparent'
-      }`}
+      className="relative rounded-lg p-5 cursor-pointer bg-card shadow-card overflow-hidden"
+      style={{
+        borderLeft: isHovered ? '4px solid #006E74' : '4px solid transparent',
+        transition: 'border-left-color 300ms ease-out'
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Default State Content */}
-      <div className={`transition-opacity duration-300 ${isHovered ? 'opacity-0 absolute pointer-events-none' : 'opacity-100'}`}>
+      <div
+        className="flex flex-col"
+        style={{
+          opacity: isHovered ? 0 : 1,
+          visibility: isHovered ? 'hidden' : 'visible',
+          transition: 'opacity 300ms ease-out, visibility 300ms ease-out',
+          position: isHovered ? 'absolute' : 'relative',
+          top: 0,
+          left: 0,
+          right: 0,
+          padding: isHovered ? '20px' : 0
+        }}
+      >
         {/* SO ID - Default State */}
         <div className="text-secondary text-lg font-normal mb-4">
           SO#{opportunity.soId}
@@ -88,7 +102,19 @@ export function OpportunityCard({ opportunity }: OpportunityCardProps) {
       </div>
 
       {/* Hover State Content */}
-      <div className={`transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0 absolute pointer-events-none'}`}>
+      <div
+        className="flex flex-col"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          visibility: isHovered ? 'visible' : 'hidden',
+          transition: 'opacity 300ms ease-out, visibility 300ms ease-out',
+          position: isHovered ? 'relative' : 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          padding: isHovered ? 0 : '20px'
+        }}
+      >
         {/* SO ID - Hover State */}
         <div className="text-primary text-lg font-normal mb-4">
           SO#{opportunity.soId}
