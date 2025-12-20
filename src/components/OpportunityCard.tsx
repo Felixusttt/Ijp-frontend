@@ -31,44 +31,28 @@ export function OpportunityCard({ opportunity }: OpportunityCardProps) {
 
   return (
     <div
-      className={`rounded-lg p-5 cursor-pointer transition-all duration-300 ease-out ${
-        isHovered ? 'bg-[#4A4A4A] shadow-card-hover' : 'bg-card shadow-card'
+      className={`rounded-lg p-5 cursor-pointer transition-all duration-300 ease-out bg-card shadow-card ${
+        isHovered ? 'border-l-4 border-l-primary' : 'border-l-4 border-l-transparent'
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* SO ID */}
-      <div className={`font-medium mb-3 ${isHovered ? 'text-white' : 'text-secondary'}`}>
-        SO#{opportunity.soId}
-      </div>
-
-      {/* Title */}
-      <h3 className={`text-base font-medium mb-1 ${isHovered ? 'text-white' : 'text-text-primary'}`}>
-        {opportunity.title}
-      </h3>
-
-      {/* Band */}
-      <div className={`text-sm mb-1 ${isHovered ? 'text-white/80' : 'text-text-muted'}`}>
-        {opportunity.band}
-      </div>
-
-      {/* Location */}
-      <div className={`flex items-center gap-1 text-sm mb-4 ${isHovered ? 'text-white/80' : 'text-text-muted'}`}>
-        <MapPin className="w-3.5 h-3.5" strokeWidth={1.5} />
-        {opportunity.location}
-      </div>
-
       {isHovered ? (
         <>
+          {/* SO ID - Hover State */}
+          <div className="text-primary text-lg font-normal mb-4">
+            SO#{opportunity.soId}
+          </div>
+
           {/* Description - Shown on Hover */}
-          <p className="text-sm text-white/90 leading-relaxed mb-4">
+          <p className="text-sm text-text-primary leading-[22px] mb-4">
             {opportunity.description}
           </p>
 
           {/* View in Detail Link - Shown on Hover */}
           <a
             href="#"
-            className="inline-flex items-center gap-1 text-sm text-white hover:underline"
+            className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
           >
             View in Detail
             <ArrowRight className="w-3.5 h-3.5" />
@@ -76,10 +60,31 @@ export function OpportunityCard({ opportunity }: OpportunityCardProps) {
         </>
       ) : (
         <>
+          {/* SO ID - Default State */}
+          <div className="text-secondary text-lg font-normal mb-4">
+            SO#{opportunity.soId}
+          </div>
+
+          {/* Title */}
+          <h3 className="text-base font-medium text-text-primary mb-1">
+            {opportunity.title}
+          </h3>
+
+          {/* Band */}
+          <div className="text-sm text-text-muted mb-1">
+            {opportunity.band}
+          </div>
+
+          {/* Location */}
+          <div className="flex items-center gap-1 text-sm text-text-muted mb-4">
+            <MapPin className="w-3.5 h-3.5" strokeWidth={1.5} />
+            {opportunity.location}
+          </div>
+
           {/* Status Badge */}
           {opportunity.status && (
             <div className="mb-4">
-              <span className={`text-sm font-medium ${getStatusColor(opportunity.status)}`}>
+              <span className={`text-sm font-normal ${getStatusColor(opportunity.status)}`}>
                 {getStatusLabel(opportunity.status)}
               </span>
             </div>
