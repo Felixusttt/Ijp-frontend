@@ -1,96 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 192 33% 96%;
+    --foreground: 355 7% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 355 7% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 355 7% 13%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 183 100% 23%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 188 100% 34%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 192 33% 96%;
+    --muted-foreground: 277 5% 49%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 192 33% 96%;
+    --accent-foreground: 355 7% 13%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --success: 159 99% 35%;
+    --success-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --warning: 45 100% 50%;
+    --warning-foreground: 355 7% 13%;
+
+    --danger: 6 96% 67%;
+    --danger-foreground: 0 0% 100%;
+
+    --destructive: 6 96% 67%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 189 29% 87%;
+    --input: 189 29% 87%;
+    --ring: 183 100% 23%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 355 7% 13%;
+    --sidebar-primary: 183 100% 23%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 192 33% 96%;
+    --sidebar-accent-foreground: 355 7% 13%;
+    --sidebar-border: 189 29% 87%;
+    --sidebar-ring: 183 100% 23%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 355 7% 13%;
+    --foreground: 0 0% 100%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 355 7% 18%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 355 7% 18%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 183 100% 23%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 188 100% 34%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 355 7% 25%;
+    --muted-foreground: 277 5% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 355 7% 25%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --success: 159 99% 35%;
+    --success-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --warning: 45 100% 50%;
+    --warning-foreground: 355 7% 13%;
+
+    --danger: 6 96% 67%;
+    --danger-foreground: 0 0% 100%;
+
+    --destructive: 6 96% 67%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 355 7% 25%;
+    --input: 355 7% 25%;
+    --ring: 183 100% 23%;
+
+    --sidebar-background: 355 7% 13%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 183 100% 23%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 355 7% 25%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 355 7% 25%;
+    --sidebar-ring: 183 100% 23%;
   }
 }
 
@@ -100,6 +110,77 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-rubik antialiased;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium;
+  }
+}
+
+@layer components {
+  .skill-chip {
+    @apply px-3 py-1 text-sm rounded-full border border-border-light bg-card;
+  }
+
+  .skill-chip-primary {
+    @apply px-3 py-1 text-sm rounded-full border border-primary text-primary bg-card;
+  }
+
+  .status-badge {
+    @apply px-2 py-0.5 text-sm font-medium rounded;
+  }
+
+  .status-shortlisted {
+    @apply text-success;
+  }
+
+  .status-actioned {
+    @apply text-warning;
+  }
+
+  .status-rejected {
+    @apply text-danger;
+  }
+
+  .nav-link {
+    @apply text-text-primary font-normal transition-colors duration-200 hover:text-primary;
+  }
+
+  .nav-link-active {
+    @apply text-text-primary font-medium relative after:absolute after:bottom-[-18px] after:left-0 after:right-0 after:h-[2px] after:bg-primary;
+  }
+
+  .opportunity-card {
+    @apply bg-card rounded-lg p-5 transition-all duration-300 ease-out cursor-pointer shadow-card;
+  }
+
+  .opportunity-card:hover {
+    @apply shadow-card-hover;
+    background-color: #4A4A4A;
+  }
+
+  .opportunity-card:hover .card-title,
+  .opportunity-card:hover .card-band,
+  .opportunity-card:hover .card-location,
+  .opportunity-card:hover .card-so-id {
+    color: #FFFFFF;
+  }
+
+  .opportunity-card:hover .skill-chip {
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .opportunity-card:hover .card-description,
+  .opportunity-card:hover .view-detail-link {
+    @apply flex;
+  }
+
+  .opportunity-card:hover .card-status,
+  .opportunity-card:hover .card-skills-section {
+    @apply hidden;
   }
 }
