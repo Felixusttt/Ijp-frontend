@@ -1,33 +1,16 @@
 import { useState } from 'react';
 import { MapPin, ArrowRight } from 'lucide-react';
+import StatusBadge from './ui/StatusBadge';
+import { Opportunity } from '@/types';
+
  
 // Mock type for demonstration
-interface Opportunity {
-  soId: string;
-  title: string;
-  band: string;
-  location: string;
-  status?: 'shortlisted' | 'actioned' | 'rejected';
-  skills: string[];
-  description: string;
-}
+
  
 interface OpportunityCardProps {
   opportunity: Opportunity;
 }
- 
-function getStatusColor(status: Opportunity['status']): string {
-  switch (status) {
-    case 'shortlisted':
-      return 'text-green-600';
-    case 'actioned':
-      return 'text-yellow-600';
-    case 'rejected':
-      return 'text-red-600';
-    default:
-      return 'text-gray-500';
-  }
-}
+
  
 function getStatusLabel(status: Opportunity['status']): string {
   if (!status) return '';
@@ -41,7 +24,7 @@ export function OpportunityCard({ opportunity }: OpportunityCardProps) {
  
   return (
     <div
-      className="relative rounded-[10px]  cursor-pointer shadow-lg overflow-hidden"
+      className="relative rounded-[10px] font-rubik  cursor-pointer shadow-lg overflow-hidden"
       style={{
         background: isHovered ?'#828080ff' :'#FFFFFF',
         transition: 'background-color 300ms ease-out',
@@ -84,11 +67,15 @@ export function OpportunityCard({ opportunity }: OpportunityCardProps) {
         </div>
  
         {/* Status Badge */}
-        {opportunity.status && (
+        {opportunity.status ? (
           <div className="mb-4">
-            <span className={`text-sm font-normal ${getStatusColor(opportunity.status)}`}>
-              {getStatusLabel(opportunity.status)}
+            <span className={`text-sm font-rubik border-none rounded-md p-1`}>
+              <StatusBadge opportunity={opportunity}/>
             </span>
+          </div>
+        ):
+        (
+          <div className="mb-4 pt-5">
           </div>
         )}
  
@@ -97,7 +84,7 @@ export function OpportunityCard({ opportunity }: OpportunityCardProps) {
           {displayedSkills.map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-sm rounded-full border border-gray-300 bg-white text-gray-900"
+              className="px-3 py-1 text-sm bg-customGray rounded-full border-none border-gray-300  text-gray-900"
             >
               {skill}
             </span>

@@ -11,7 +11,7 @@ export interface Opportunity {
   title: string;
   band: string;
   location: string;
-  status: 'shortlisted' | 'actioned' | 'rejected' | null;
+  status: string;
   skills: string[];
   description: string;
 }
@@ -31,7 +31,7 @@ export interface Activity {
   id: string;
   title: string;
   soId: string;
-  status: 'shortlisted' | 'actioned' | 'rejected';
+  status: string;
   timestamp: string;
 }
 
@@ -46,3 +46,4 @@ export interface Stats {
   shortlisted: number;
   rejected: number;
 }
+
