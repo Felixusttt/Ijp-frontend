@@ -1,79 +1,88 @@
 import { useState } from 'react';
 import { MapPin, ArrowRight } from 'lucide-react';
-import type { Opportunity } from '@/types';
-
+ 
+// Mock type for demonstration
+interface Opportunity {
+  soId: string;
+  title: string;
+  band: string;
+  location: string;
+  status?: 'shortlisted' | 'actioned' | 'rejected';
+  skills: string[];
+  description: string;
+}
+ 
 interface OpportunityCardProps {
   opportunity: Opportunity;
 }
-
+ 
 function getStatusColor(status: Opportunity['status']): string {
   switch (status) {
     case 'shortlisted':
-      return 'text-success';
+      return 'text-green-600';
     case 'actioned':
-      return 'text-warning';
+      return 'text-yellow-600';
     case 'rejected':
-      return 'text-danger';
+      return 'text-red-600';
     default:
-      return 'text-text-muted';
+      return 'text-gray-500';
   }
 }
-
+ 
 function getStatusLabel(status: Opportunity['status']): string {
   if (!status) return '';
   return status.charAt(0).toUpperCase() + status.slice(1);
 }
-
+ 
 export function OpportunityCard({ opportunity }: OpportunityCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const displayedSkills = opportunity.skills.slice(0, 2);
   const remainingSkills = opportunity.skills.length - 2;
-
+ 
   return (
     <div
-      className="relative rounded-lg p-5 cursor-pointer bg-card shadow-card overflow-hidden"
+      className="relative rounded-[10px]  cursor-pointer shadow-lg overflow-hidden"
       style={{
-        borderLeft: isHovered ? '4px solid #006E74' : '4px solid transparent',
-        transition: 'border-left-color 300ms ease-out'
+        background: isHovered ?'#828080ff' :'#FFFFFF',
+        transition: 'background-color 300ms ease-out',
+        height: '287px',
+        width: '320px'
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Default State Content */}
-      <div
-        className="flex flex-col"
-        style={{
-          opacity: isHovered ? 0 : 1,
-          visibility: isHovered ? 'hidden' : 'visible',
-          transition: 'opacity 300ms ease-out, visibility 300ms ease-out',
-          position: isHovered ? 'absolute' : 'relative',
-          top: 0,
-          left: 0,
-          right: 0,
-          padding: isHovered ? '20px' : 0
+      <div className="flex flex-col"
+      style={{
+          opacity: isHovered ? 0.5 : 1,
+          transition: 'opacity 300ms ease-out'
         }}
-      >
+        >
         {/* SO ID - Default State */}
-        <div className="text-secondary text-lg font-normal mb-4">
+        <div className="text-teal-700 pl-5 pr-5 pt-5 text-lg font-normal mb-4">
           SO#{opportunity.soId}
         </div>
-
-        {/* Title */}
-        <h3 className="text-base font-medium text-text-primary mb-1">
+        <div style={{width:'100%'}}>
+          <hr style={{ width: '100%', borderTop: '1px solid #ccc', marginBottom: '1rem', margin: "0 auto 1rem auto" }} />
+        </div>
+        
+        <div className='pl-5 pr-5 pt-5 '>
+          {/* Title */}
+        <h3 className="text-base font-medium text-gray-900 mb-1">
           {opportunity.title}
         </h3>
-
+ 
         {/* Band */}
-        <div className="text-sm text-text-muted mb-1">
+        <div className="text-sm text-gray-600 mb-1">
           {opportunity.band}
         </div>
-
+ 
         {/* Location */}
-        <div className="flex items-center gap-1 text-sm text-text-muted mb-4">
+        <div className="flex items-center gap-1 text-sm text-gray-600 mb-4">
           <MapPin className="w-3.5 h-3.5" strokeWidth={1.5} />
           {opportunity.location}
         </div>
-
+ 
         {/* Status Badge */}
         {opportunity.status && (
           <div className="mb-4">
@@ -82,58 +91,90 @@ export function OpportunityCard({ opportunity }: OpportunityCardProps) {
             </span>
           </div>
         )}
-
+ 
         {/* Skills */}
         <div className="flex items-center gap-2 flex-wrap">
           {displayedSkills.map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-sm rounded-full border border-border-light bg-card text-text-primary"
+              className="px-3 py-1 text-sm rounded-full border border-gray-300 bg-white text-gray-900"
             >
               {skill}
             </span>
           ))}
           {remainingSkills > 0 && (
-            <span className="px-3 py-1 text-sm rounded-full border border-border-light bg-card text-text-primary">
+            <span className="px-3 py-1 text-sm rounded-full border border-gray-300 bg-white text-gray-900">
               +{remainingSkills}
             </span>
           )}
         </div>
       </div>
-
-      {/* Hover State Content */}
+        </div>
+ 
+        
+ 
+      {/* Hover State Content - Covers from Title to End */}
       <div
-        className="flex flex-col"
+        className="flex flex-col absolute left-0 right-0 rounded-lg overflow-hidden"
         style={{
+          top: '3.625rem', // Position after SO ID (text-lg + mb-4)
+          bottom: 0,
           opacity: isHovered ? 1 : 0,
           visibility: isHovered ? 'visible' : 'hidden',
           transition: 'opacity 300ms ease-out, visibility 300ms ease-out',
-          position: isHovered ? 'relative' : 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          padding: isHovered ? 0 : '20px'
+          pointerEvents: isHovered ? 'auto' : 'none',
+          zIndex: 10
         }}
       >
-        {/* SO ID - Hover State */}
-        <div className="text-primary text-lg font-normal mb-4">
-          SO#{opportunity.soId}
+ 
+        {/* White Card Body */}
+        <div className="flex-1 bg-white px-5 py-4 flex flex-col justify-between">
+          {/* Description */}
+          <p
+            className="text-sm mb-6"
+            style={{
+              color: '#4A4A4A',
+              lineHeight: '1.6',
+              fontFamily: 'system-ui, -apple-system, sans-serif'
+            }}
+          >
+            {opportunity.description}
+          </p>
+ 
+          {/* View in Detail Link */}
+          <a
+            href="#"
+            className="inline-flex items-center gap-1.5 font-medium hover:underline"
+            style={{
+              color: '#006E74',
+              fontSize: '0.9375rem'
+            }}
+          >
+            View in Detail
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
-
-        {/* Description - Shown on Hover */}
-        <p className="text-sm text-text-primary leading-[22px] mb-4">
-          {opportunity.description}
-        </p>
-
-        {/* View in Detail Link - Shown on Hover */}
-        <a
-          href="#"
-          className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-        >
-          View in Detail
-          <ArrowRight className="w-3.5 h-3.5" />
-        </a>
       </div>
     </div>
   );
 }
+ 
+// Demo with sample data
+// export default function App() {
+//   const sampleOpportunity: Opportunity = {
+//     soId: '12345',
+//     title: 'Lead2 Software Developer',
+//     band: 'Band 3',
+//     location: 'Hyderabad, India',
+//     status: 'shortlisted',
+//     skills: ['React', 'TypeScript', 'Node.js', 'AWS'],
+//     description: 'We are looking for an experienced Lead Software Developer to join our dynamic team. The ideal candidate will have strong expertise in React, TypeScript, and modern web technologies. You will lead development efforts and mentor junior developers.'
+//   };
+ 
+//   return (
+//     <div className="min-h-screen bg-gray-100 p-8">
+//       <OpportunityCard opportunity={sampleOpportunity} />
+//     </div>
+//   );
+// }
+ 
