@@ -10,9 +10,9 @@ interface NavbarProps {
 }
 
 const navItems = [
-  { label: 'Home', href: '#', active: true },
+  { label: 'Home', href: '/', active: true },
   { label: 'Opportunities', href: '#', active: false },
-  { label: 'Assigning & Tracking', href: '#', active: false },
+  { label: 'Assigning & Tracking', href: 'assign', active: false },
   { label: 'My Applications', href: '#', active: false },
 ];
 
