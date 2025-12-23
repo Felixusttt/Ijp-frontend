@@ -92,7 +92,7 @@ export function OpportunityGrid({ opportunities }: OpportunityGridProps) {
 
       {/* Grid - Uses auto-fit for responsive columns */}
       {viewMode === 'grid' &&(
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-5">
+        <div className="grid grid-cols-[repeat(3,1fr)] gap-5">
         {opportunities.map((opportunity) => (
           <OpportunityCard key={opportunity.id} opportunity={opportunity} />
         ))}
