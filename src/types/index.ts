@@ -46,3 +46,8 @@ export interface Stats {
   rejected: number;
 }
 
+export type CandidateStatus =
+  | "PENDING_WFM"
+  | "REJECTED"
+  | "SELECTED"
+  | "ALLOCATED";
