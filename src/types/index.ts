@@ -7,8 +7,7 @@ export interface User {
 
 export interface Opportunity {
   id: string;
-  soId: string;
-  title: string;
+  role: string;
   band: string;
   location: string;
   status: string;

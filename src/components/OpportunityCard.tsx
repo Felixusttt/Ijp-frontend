@@ -43,7 +43,7 @@ export function OpportunityCard({ opportunity }: OpportunityCardProps) {
         >
         {/* SO ID - Default State */}
         <div className="text-teal-700 pl-5 pr-5 pt-5 text-lg font-normal mb-4">
-          SO#{opportunity.soId}
+          SO#{opportunity.id}
         </div>
         <div style={{width:'100%'}}>
           <hr style={{ width: '100%', borderTop: '1px solid #ccc', marginBottom: '1rem', margin: "0 auto 1rem auto" }} />
@@ -52,7 +52,7 @@ export function OpportunityCard({ opportunity }: OpportunityCardProps) {
         <div className='pl-5 pr-5 pt-5 '>
           {/* Title */}
         <h3 className="text-base font-medium text-gray-900 mb-1">
-          {opportunity.title}
+          {opportunity.role}
         </h3>
  
         {/* Band */}

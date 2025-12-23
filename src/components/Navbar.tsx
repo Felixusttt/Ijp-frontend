@@ -9,6 +9,7 @@ interface NavbarProps {
   notifications: Notification[];
 }
 
+
 const navItems = [
   { label: 'Home', href: '#', active: true },
   { label: 'Opportunities', href: '#', active: false },

@@ -13,32 +13,32 @@ export function OpportunityGrid({ opportunities }: OpportunityGridProps) {
   const [hideApplied, setHideApplied] = useState(false);
 
   return (
-    <div className="flex flex-col py-6 px-6">
-
+    <div className="flex-1 ">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className='px-5'>
+      <div className="flex items-center justify-between mb-6 mt-6 mr-3 ml-2">
         <h2 className="text-lg font-medium text-text-primary">Recommended Opportunities</h2>
 
         <div className="flex items-center gap-4">
           {/* Hide Applied Toggle */}
           <div className="flex items-center gap-2">
-            <span className="text-sm text-text-muted">Hide Applied Jobs</span>
+            <span className="text-sm text-text-muted whitespace-nowrap">Hide Applied Jobs</span>
             <button
-  onClick={() => setHideApplied(!hideApplied)}
-  className={`relative w-16 h-6 rounded-full border-2 transition-colors flex items-center justify-center
-    ${hideApplied ? 'bg-primary border-gray-800' : 'bg-white border-gray-400'}`}
->
-  <span
-    className={`absolute left-1 top-0.3 w-4 h-4 rounded-full bg-gray-400 transition-transform
-      ${hideApplied ? 'translate-x-9' : 'translate-x-0'}`}
-  />
-  <span
-    className={`text-xs font-semibold transition-colors
-      ${hideApplied ? 'text-white' : 'text-gray-400'}`}
-  >
-    {hideApplied ? 'Yes' : 'No'}
-  </span>
-</button>
+              onClick={() => setHideApplied(!hideApplied)}
+              className={`relative w-16 h-6 rounded-full border-2 transition-colors flex items-center justify-center
+                ${hideApplied ? 'bg-primary border-gray-800' : 'bg-white border-gray-400'}`}
+            >
+              <span
+                className={`absolute left-1 top-0.3 w-4 h-4 rounded-full bg-gray-400 transition-transform
+                  ${hideApplied ? 'translate-x-9' : 'translate-x-0'}`}
+              />
+              <span
+                className={`text-xs font-semibold transition-colors
+                  ${hideApplied ? 'text-white' : 'text-gray-400'}`}
+              >
+                {hideApplied ? 'Yes' : 'No'}
+              </span>
+            </button>
           </div>
 
           {/* Export Excel */}
@@ -54,27 +54,52 @@ export function OpportunityGrid({ opportunities }: OpportunityGridProps) {
                 viewMode === 'grid' ? 'bg-muted' : 'hover:bg-muted'
               }`}
             >
-              <Grid3X3 className="w-4 h-4 text-text-muted" strokeWidth={1.5} />
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke={viewMode === 'grid' ? '#0f0f10ff' : 'currentColor'}
+                strokeWidth="1.5"
+                className={`w-4 h-4 ${
+                  viewMode === 'grid' ? 'text-primary' : 'text-text-muted'
+                }`}
+              >
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+              </svg>
             </button>
+            <div className="w-px h-[35px] bg-gray-300" />
             <button
               onClick={() => setViewMode('list')}
               className={`p-2 transition-colors ${
                 viewMode === 'list' ? 'bg-muted' : 'hover:bg-muted'
               }`}
             >
-              <List className="w-4 h-4 text-text-muted" strokeWidth={1.5} />
+              <List
+                className={`w-4 h-4 transition-colors ${
+                  viewMode === 'list'
+                    ? 'text-primary'
+                    : 'text-text-muted'
+                }`}
+                stroke={viewMode === 'list' ? '#111113ff' : 'currentColor'}
+                strokeWidth={1.5}
+              />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-3 gap-5">
+      {/* Grid - Uses auto-fit for responsive columns */}
+      {viewMode === 'grid' &&(
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-5">
         {opportunities.map((opportunity) => (
           <OpportunityCard key={opportunity.id} opportunity={opportunity} />
         ))}
       </div>
-
+      )}
+      
+      </div>
     </div>
   );
 }

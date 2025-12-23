@@ -16,7 +16,8 @@ export default function Home() {
     <div className="min-h-screen bg-bg-main">
       <Navbar user={currentUser} notifications={notifications} />
       
-      <div className="flex">
+      {/* Use max-width container and proper flex layout */}
+      <div className="max-w-[1920px] mx-auto flex gap-6 px-6">
         <Sidebar profile={profileSummary} />
         <OpportunityGrid opportunities={opportunities} />
         <RightSidebar stats={stats} activities={recentActivities} />
